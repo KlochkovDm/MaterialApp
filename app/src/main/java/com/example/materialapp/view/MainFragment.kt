@@ -1,5 +1,7 @@
-package com.example.materialapp.ui.main
+package com.example.materialapp.view
 
+import android.content.Intent
+import android.net.Uri
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -40,11 +42,18 @@ class MainFragment : Fragment() {
             renderData(it)
         })
         viewModel.sendServerRequest()
+
+        binding.inputLayout.setEndIconOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
+            })
+        }
     }
 
     private fun renderData(state: PictureOfTheDayState) {
         when (state) {
             is PictureOfTheDayState.Error -> {//TODO(ДЗ)
+
             }
             is PictureOfTheDayState.Loading -> {
                 binding.imageView.load(R.drawable.ic_no_photo_vector)
@@ -56,7 +65,8 @@ class MainFragment : Fragment() {
                     lifecycle(this@MainFragment)
                     error(R.drawable.ic_load_error_vector)
                     placeholder(R.drawable.ic_no_photo_vector)
-                binding.message.text = pictureOfTheDayResponseData.title+pictureOfTheDayResponseData.explanation
+                binding.includeBottomSheet.bottomSheetDescriptionHeader.text = pictureOfTheDayResponseData.title
+                binding.includeBottomSheet.bottomSheetDescription.text = pictureOfTheDayResponseData.explanation
                 }
             }
         }

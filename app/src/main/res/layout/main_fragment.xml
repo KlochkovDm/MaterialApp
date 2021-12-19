@@ -16,10 +16,10 @@
             android:layout_height="wrap_content"
             android:hint="@string/search_wiki"
             app:counterEnabled="true"
-            app:counterMaxLength="5"
-            app:endIconMode="custom"
-            app:endIconDrawable="@drawable/ic_wikipedia"
+            app:counterMaxLength="15"
             app:endIconCheckable="true"
+            app:endIconDrawable="@drawable/ic_wikipedia"
+            app:endIconMode="custom"
             app:helperText="@string/wiki_helper_text"
             app:layout_constraintBottom_toTopOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,18 +37,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:contentDescription="@string/photo_of_the_day_stub"
-            app:layout_constraintBottom_toTopOf="@+id/message"
-            app:srcCompat="@drawable/ic_no_photo_vector" />
-
-        <TextView
-            android:id="@+id/message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MainFragment"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_no_photo_vector" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -20,7 +20,7 @@ class PictureOfTheDayViewModel(private val liveDataForViewToObserve: MutableLive
     fun sendServerRequest() {
         liveDataForViewToObserve.value = PictureOfTheDayState.Loading(0)
         val apiKey: String = BuildConfig.NASA_API_KEY
-        if (apiKey.isBlank()) { // TODO (проверить "")
+        if (apiKey.isBlank()) {
             liveDataForViewToObserve.value = PictureOfTheDayState.Error(Throwable("wrong key"))
         } else {
             retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey).enqueue(callback)
@@ -40,7 +40,7 @@ class PictureOfTheDayViewModel(private val liveDataForViewToObserve: MutableLive
         }
 
         override fun onFailure(call: Call<PictureOfTheDayResponseData>, t: Throwable) {
-            //TODO("уловить ошибку")
+            t.printStackTrace()
         }
 
     }

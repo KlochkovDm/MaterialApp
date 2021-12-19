@@ -3,7 +3,7 @@ package com.example.materialapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.materialapp.databinding.MainActivityBinding
-import com.example.materialapp.ui.main.MainFragment
+import com.example.materialapp.view.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
