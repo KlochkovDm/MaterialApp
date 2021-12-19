@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.Observer
+import coil.load
 import com.example.materialapp.R
 import com.example.materialapp.databinding.MainFragmentBinding
+import com.example.materialapp.viewmodel.PictureOfTheDayState
+import com.example.materialapp.viewmodel.PictureOfTheDayViewModel
 
 class MainFragment : Fragment() {
 
@@ -21,7 +24,9 @@ class MainFragment : Fragment() {
         fun newInstance() = MainFragment()
     }
 
-    private lateinit var viewModel: MainViewModel
+    private val viewModel: PictureOfTheDayViewModel by lazy {
+        ViewModelProvider(this).get(PictureOfTheDayViewModel::class.java)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
@@ -29,15 +34,36 @@ class MainFragment : Fragment() {
         return binding.root
     }
 
-//    override fun onActivityCreated(savedInstanceState: Bundle?) {
-//        super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-//        // TODO: Use the ViewModel
-//    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.getData().observe(viewLifecycleOwner, Observer {
+            renderData(it)
+        })
+        viewModel.sendServerRequest()
     }
 
+    private fun renderData(state: PictureOfTheDayState) {
+        when (state) {
+            is PictureOfTheDayState.Error -> {//TODO(ДЗ)
+            }
+            is PictureOfTheDayState.Loading -> {
+                binding.imageView.load(R.drawable.ic_no_photo_vector)
+            }
+            is PictureOfTheDayState.Success -> {
+                val pictureOfTheDayResponseData = state.pictureOfTheDayResponseData
+                val url = pictureOfTheDayResponseData.url
+                binding.imageView.load(url) {
+                    lifecycle(this@MainFragment)
+                    error(R.drawable.ic_load_error_vector)
+                    placeholder(R.drawable.ic_no_photo_vector)
+                binding.message.text = pictureOfTheDayResponseData.title+pictureOfTheDayResponseData.explanation
+                }
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
