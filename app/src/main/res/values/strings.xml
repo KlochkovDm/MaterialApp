@@ -8,4 +8,8 @@
     <string name="settings">settings</string>
     <string name="search">Search</string>
     <string name="illegal_state_exception">Something went wrong</string>
+    <string name="chips_today">Today</string>
+    <string name="chip_yesterday">Yesterday</string>
+    <string name="chip_before_yesterday">The Day Before Yesterday</string>
+    <string name="something_went_wrong">Something went wrong or PICTURE OF THE DAY was not uploaded by NASA yet. Please, try again later</string>
 </resources>

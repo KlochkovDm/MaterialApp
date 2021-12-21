@@ -1,5 +1,8 @@
 package com.example.materialapp.viewmodel
 
+import android.icu.text.SimpleDateFormat
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +13,7 @@ import com.example.materialapp.repository.PictureOfTheDayRetrofitImpl
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.security.AccessController.getContext
+import java.util.*
 
 class PictureOfTheDayViewModel(private val liveDataForViewToObserve: MutableLiveData<PictureOfTheDayState> = MutableLiveData(),
                                private val retrofitImpl: PictureOfTheDayRetrofitImpl = PictureOfTheDayRetrofitImpl()
@@ -19,13 +22,15 @@ class PictureOfTheDayViewModel(private val liveDataForViewToObserve: MutableLive
         return liveDataForViewToObserve
     }
 
-    fun sendServerRequest() {
+    fun sendServerRequest(date: Date) {
+        val formatter = SimpleDateFormat("yyyy-MM-dd")
+        val formattedDate = formatter.format(date).toString()
         liveDataForViewToObserve.value = PictureOfTheDayState.Loading(0)
         val apiKey: String = BuildConfig.NASA_API_KEY
         if (apiKey.isBlank()) {
             liveDataForViewToObserve.value = PictureOfTheDayState.Error(Throwable("wrong key"))
         } else {
-            retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey).enqueue(callback)
+            retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey, formattedDate).enqueue(callback)
         }
     }
 
@@ -37,7 +42,7 @@ class PictureOfTheDayViewModel(private val liveDataForViewToObserve: MutableLive
             if(response.isSuccessful&&response.body()!=null){
                 liveDataForViewToObserve.value = PictureOfTheDayState.Success(response.body()!!)
             }else{
-                liveDataForViewToObserve.value = PictureOfTheDayState.Error(throw IllegalStateException(R.string.illegal_state_exception.toString()))
+                liveDataForViewToObserve.value = PictureOfTheDayState.Error(IllegalStateException(R.string.illegal_state_exception.toString()))
             }
         }
 
