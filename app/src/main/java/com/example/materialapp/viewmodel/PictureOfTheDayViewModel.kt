@@ -4,11 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.materialapp.BuildConfig
+import com.example.materialapp.R
 import com.example.materialapp.repository.PictureOfTheDayResponseData
 import com.example.materialapp.repository.PictureOfTheDayRetrofitImpl
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.security.AccessController.getContext
 
 class PictureOfTheDayViewModel(private val liveDataForViewToObserve: MutableLiveData<PictureOfTheDayState> = MutableLiveData(),
                                private val retrofitImpl: PictureOfTheDayRetrofitImpl = PictureOfTheDayRetrofitImpl()
@@ -35,11 +37,12 @@ class PictureOfTheDayViewModel(private val liveDataForViewToObserve: MutableLive
             if(response.isSuccessful&&response.body()!=null){
                 liveDataForViewToObserve.value = PictureOfTheDayState.Success(response.body()!!)
             }else{
-                //TODO("уловить ошибку")
+                liveDataForViewToObserve.value = PictureOfTheDayState.Error(throw IllegalStateException(R.string.illegal_state_exception.toString()))
             }
         }
 
         override fun onFailure(call: Call<PictureOfTheDayResponseData>, t: Throwable) {
+            liveDataForViewToObserve.value = PictureOfTheDayState.Error(throw t)
             t.printStackTrace()
         }
 

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import coil.load
 import com.example.materialapp.R
@@ -52,8 +53,9 @@ class MainFragment : Fragment() {
 
     private fun renderData(state: PictureOfTheDayState) {
         when (state) {
-            is PictureOfTheDayState.Error -> {//TODO(ДЗ)
-
+            is PictureOfTheDayState.Error -> {
+                binding.imageView.load(R.drawable.ic_load_error_vector)
+                Toast.makeText(requireContext(),"Something went wrong. Please thy again",Toast.LENGTH_LONG)
             }
             is PictureOfTheDayState.Loading -> {
                 binding.imageView.load(R.drawable.ic_no_photo_vector)
