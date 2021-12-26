@@ -5,11 +5,10 @@
     android:id="@+id/bottom_sheet_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_700"
     app:behavior_hideable="true"
-
     app:behavior_peekHeight="@dimen/bottom_sheet_peek_height"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:background="?attr/colorPrimaryVariant">
 
     <View
         android:id="@+id/bottom_sheet_line"
@@ -20,27 +19,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/bottom_sheet_description_header"
+        style="@style/CustomStyleDescriptionHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/bottom_sheet_description_margin"
-        android:paddingStart="@dimen/bottom_sheet_description_padding"
-        android:paddingEnd="@dimen/bottom_sheet_description_padding"
-        android:textColor="@color/black"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_line"
-        tools:text="Two Clusters and a Comet"/>
+        tools:text="Two Clusters and a Comet" />
 
     <TextView
         android:id="@+id/bottom_sheet_description"
+        style="@style/CustomStyleDescriptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/bottom_sheet_description_padding"
-        android:paddingEnd="@dimen/bottom_sheet_description_padding"
-        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bottom_sheet_description_header"
