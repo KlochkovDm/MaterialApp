@@ -92,7 +92,7 @@ class MainFragment : Fragment() {
         when (state) {
             is PictureOfTheDayState.Error -> {
                 binding.imageView.load(R.drawable.ic_load_error_vector)
-                Toast.makeText(requireContext(),getString(R.string.something_went_wrong), Toast.LENGTH_LONG)
+                Toast.makeText(requireContext(),getString(R.string.something_went_wrong), Toast.LENGTH_LONG).show()
             }
             is PictureOfTheDayState.Loading -> {
                 binding.imageView.load(R.drawable.ic_no_photo_vector)
