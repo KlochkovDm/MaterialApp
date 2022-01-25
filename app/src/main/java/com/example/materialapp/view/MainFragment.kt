@@ -7,14 +7,13 @@ import android.net.Uri
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat
 import androidx.lifecycle.Observer
 import coil.load
+import com.example.materialapp.MainActivity
 import com.example.materialapp.R
 import com.example.materialapp.databinding.MainFragmentBinding
 import com.example.materialapp.viewmodel.PictureOfTheDayState
@@ -49,6 +48,7 @@ class MainFragment : Fragment() {
         viewModel.getData().observe(viewLifecycleOwner, Observer {
             renderData(it)
         })
+        setBottomAppBar()
         val calendar = Calendar.getInstance()
         val TODAY = getDate(calendar,0)
         val YESTERDAY = getDate(calendar,1)
@@ -88,7 +88,7 @@ class MainFragment : Fragment() {
 
     }
 
-    private fun renderData(state: PictureOfTheDayState) {
+    private fun renderData(state: PictureOfTheDayState)  {
         when (state) {
             is PictureOfTheDayState.Error -> {
                 binding.imageView.load(R.drawable.ic_load_error_vector)
@@ -120,4 +120,18 @@ class MainFragment : Fragment() {
         calendar.add(Calendar.DAY_OF_YEAR, -daysAgo)
         return calendar.time
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> BottomNavigationDrawerFragment().show(requireActivity().supportFragmentManager, "")
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun setBottomAppBar() {
+        val context = activity as MainActivity
+        context.setSupportActionBar(binding.bottomAppBar)
+        setHasOptionsMenu(true)
+    }
+
 }

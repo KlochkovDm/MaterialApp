@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="none">
+
+    <item
+        android:id="@+id/theme_main"
+        android:title="@string/main_theme"/>
+    <item
+        android:id="@+id/theme_custom"
+        android:title="@string/custom_theme"/>
+    <item
+        android:id="@+id/theme_night"
+        android:title="@string/night_theme"/>
+    </group>
+</menu>

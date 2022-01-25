@@ -12,4 +12,7 @@
     <string name="chip_yesterday">Yesterday</string>
     <string name="chip_before_yesterday">The Day Before Yesterday</string>
     <string name="something_went_wrong">Something went wrong or PICTURE OF THE DAY was not uploaded by NASA yet. Please, try again later</string>
+    <string name="main_theme">Main Theme</string>
+    <string name="custom_theme">Custom Theme</string>
+    <string name="night_theme">Night Theme</string>
 </resources>
