@@ -62,5 +62,4 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
         super.onDestroy()
         _binding = null
     }
-
 }
