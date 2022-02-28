@@ -87,15 +87,15 @@ class SpaceFragment(date: Date) : Fragment() {
         _binding = null
     }
 
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> BottomNavigationDrawerFragment().show(
-                requireActivity().supportFragmentManager,
-                ""
-            )
-        }
-        return super.onOptionsItemSelected(item)
-    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        when (item.itemId) {
+//            android.R.id.home -> BottomNavigationDrawerFragment().show(
+//                requireActivity().supportFragmentManager,
+//                ""
+//            )
+//        }
+//        return super.onOptionsItemSelected(item)
+//    }
 
 }
