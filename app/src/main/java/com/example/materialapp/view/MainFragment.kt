@@ -15,7 +15,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class MainFragment : Fragment() {
 
-
     private var _binding: MainFragmentBinding? = null
 
     private val binding: MainFragmentBinding
@@ -36,7 +35,9 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setBottomAppBar()
-        binding.viewPager.adapter = ViewPagerAdapter(requireActivity())
+        binding.viewPager.adapter=ViewPagerAdapter(requireActivity())
+        val vP = binding.viewPager
+        vP.currentItem
         TabLayoutMediator(
             binding.tabLayout,
             binding.viewPager,
@@ -51,7 +52,6 @@ class MainFragment : Fragment() {
                 }
 
             }).attach()
-
         binding.inputLayout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data =
@@ -80,5 +80,4 @@ class MainFragment : Fragment() {
         context.setSupportActionBar(binding.bottomAppBar)
         setHasOptionsMenu(true)
     }
-
 }

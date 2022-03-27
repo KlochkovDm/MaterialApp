@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.materialapp.databinding.SettingsFragmentBinding
 
-class SettingsFragment : Fragment () {
+class SettingsFragment : Fragment() {
 
     private var _binding: SettingsFragmentBinding? = null
 
@@ -19,10 +19,9 @@ class SettingsFragment : Fragment () {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = SettingsFragmentBinding.inflate(inflater,container,false)
+        _binding = SettingsFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
